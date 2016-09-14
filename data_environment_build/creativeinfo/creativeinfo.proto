@@ -1,0 +1,10 @@
+package ad;
+
+message Creative{
+	required bytes id = 1;
+	required bytes info = 2;
+}
+
+message CreativeInfo{
+	repeated Creative creative = 1;
+}

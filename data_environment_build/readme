@@ -1,0 +1,29 @@
+注：使用提示
+
+1：到相应的groupinfo、positioninfo、creativeinfo目录下make；
+	直接运行生成的可执行文件（不带参数），可看到用法；
+
+2：素材id的获取是通过先获取到group的信息之后，从group的信息中取出素材的id，再按照获取到的素材id从redis中取出对应素材信息；
+	因此获取素材信息之前，需要先获取group信息；
+
+-----------------------------------------
+
+附录：redis与mysql环境搭建
+
+1：redis搭建
+下载源代码，以当前（2016年9月14日）最新版本为例 redis-3.2.3.tar.gz；
+	解压进入源码目录，执行 make -j 4 编译redis；
+	配置目录下的redis.conf文件，设置redis监听的ip地址和端口号；
+	进入src目录下，执行 ./redis-server ../redis.conf& ,运行redis并监听相应端口；
+	
+2：mysql搭建
+	yum install mysql-server;
+	service mysqld start;
+	设置相应的账号，密码；
+	
+mysql账号、密码设置
+	以root账户登陆；
+	使用mysql数据库：use mysql;
+	添加用户：create user groupinfo;
+	更新user表中的用户信息：update user set host='192.168.7.60' password=password('groupinfo123') select_priv='Y' insert_priv='Y' update_priv='Y' delete_priv='Y' create_priv='Y' drop_priv='Y' where user='groupinfo';
+	
